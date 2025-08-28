@@ -10,7 +10,7 @@ jobs:
           java-version: '21'
       - run: powershell
       - run: .\gradlew.bat build
-      - run: cp .\build\resources\main .\classes\kotlin\ -r -Force
+      - run: cp .\build\resources\main .\build\classes\kotlin\ -r -Force
       - run: .\gradlew.bat copyDependencies
       - run: cd build
       - run: jpackage -t app-image -n myapp -p ".\libs\kotlin-stdlib-2.2.0.jar;.\classes\kotlin" -m me.cdh/me.cdh.MainKt --jlink-options "--compress zip-9 --strip-native-commands --strip-debug --no-header-files --no-man-pages" --dest output --icon .\classes\kotlin\main\kitty.ico 
