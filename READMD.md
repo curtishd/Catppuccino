@@ -4,7 +4,7 @@
 A lightweight and adorable desktop virtual pet cat. It will roam freely on your desktop, play, sleep, and keep you company during your work or study time, bringing a touch of relaxation and delight.
 
 ## Preview
-
+![video.gif](doc/video.gif)
 
 ## Feature
 - **Adorable Interactions**: The kitten has multiple states, including walking, stretching, napping.
@@ -41,7 +41,7 @@ A lightweight and adorable desktop virtual pet cat. It will roam freely on your 
 ### **CI/CD**
 Fork the repo.
 This project uses GitHub Actions for continuous integration and deployment. The workflows are defined in the .github/workflows/ directory.
-**CI** Runs on every push to the main branch.
+**CI** Runs on every push and dispatch to the main branch.
 
 ### Viewing CI Results
 1. Go to the "Actions" tab in your
