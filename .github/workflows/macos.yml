@@ -1,0 +1,21 @@
+on: push
+jobs:
+  setup-java:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+      - run: powershell
+      - run: gradlew build
+      - run: cp build/resources/main build/classes/kotlin/ -r -Force
+      - run: gradlew copyDependencies
+      - run: cd build
+      - run: ls
+      - run: jpackage -t app-image -n myapp -p "build/libs;build/classes/kotlin/main" -m me.cdh/me.cdh.MainKt --jlink-options "--compress zip-9 --strip-native-commands --strip-debug --no-header-files --no-man-pages" --dest output --icon build/classes/kotlin/main/kitty.ico
+      - uses: actions/upload-artifact@v4
+        with:
+          name: kitten
+          path: ./output
