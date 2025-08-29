@@ -12,11 +12,9 @@ jobs:
       - run: .\gradlew.bat build
       - run: cp .\build\resources\main .\build\classes\kotlin\ -r -Force
       - run: .\gradlew.bat copyDependencies
-      - name: Verify build structure
-      - run: |
-          Get-ChildItem -Recurse -Path "build" | Where-Object { $_.Name -like "*.jar" } | Format-List
-          Get-ChildItem -Path "build\classes\kotlin\main" -Recurse | Where-Object { $_.Name -like "*MainKit*" } | Format-List
-      - run: cd build | jpackage -t app-image -n myapp -p "libs;classes\kotlin\main" -m me.cdh/me.cdh.MainKt --jlink-options "--compress zip-9 --strip-native-commands --strip-debug --no-header-files --no-man-pages" --dest output
+      - run: cd build
+      - run: ls
+      - run: jpackage -t app-image -n myapp -p "libs;classes\kotlin\main" -m me.cdh/me.cdh.MainKt --jlink-options "--compress zip-9 --strip-native-commands --strip-debug --no-header-files --no-man-pages" --dest output
       - uses: actions/upload-artifact@v4
         with:
           name: my-exe
