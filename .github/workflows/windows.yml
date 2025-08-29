@@ -1,5 +1,5 @@
-on: push
-jobs: 
+on: [ push, workflow_dispatch ]
+jobs:
   setup-java:
     runs-on: windows-latest
     steps:

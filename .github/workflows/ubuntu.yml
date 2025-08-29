@@ -1,4 +1,4 @@
-on: push
+on: [ push, workflow_dispatch ]
 jobs:
   setup-java:
     runs-on: ubuntu-latest
