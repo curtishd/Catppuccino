@@ -9,7 +9,8 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
       - run: ls -la
-      - run: chmod +x ./gradlew build
+      - run: chmod +x ./gradlew
+      - run: ./gradlew build
       - run: cp ./build/resources/main ./build/classes/kotlin/ -r -Force
       - run: chmod +x ./gradlew copyDependencies
       - run: cd build
