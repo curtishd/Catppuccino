@@ -8,7 +8,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
-      - run: powershell
       - run: gradlew build
       - run: cp build/resources/main build/classes/kotlin/ -r -Force
       - run: gradlew copyDependencies
