@@ -1,6 +1,6 @@
 package me.cdh
 
-import me.cdh.enum.Behave
+import me.cdh.enumerate.Behave
 import javax.swing.SwingUtilities
 import kotlin.concurrent.timer
 

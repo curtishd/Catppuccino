@@ -1,4 +1,4 @@
-package me.cdh.enum
+package me.cdh.enumerate
 
 import me.cdh.Animate
 

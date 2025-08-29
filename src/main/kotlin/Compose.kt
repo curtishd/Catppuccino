@@ -1,13 +1,14 @@
 package me.cdh
 
-import me.cdh.enum.Behave
-import me.cdh.enum.BubbleState
-import me.cdh.enum.Direction
-import me.cdh.enum.State
+import me.cdh.enumerate.Behave
+import me.cdh.enumerate.BubbleState
+import me.cdh.enumerate.Direction
+import me.cdh.enumerate.State
 import java.awt.*
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import java.awt.image.BufferedImage
+import java.util.WeakHashMap
 import javax.imageio.ImageIO
 import javax.swing.JFrame
 import javax.swing.WindowConstants
@@ -66,7 +67,7 @@ object Compose {
     private object Loader {
         fun <T> loadRes(entries: EnumEntries<T>): Map<String, List<BufferedImage>>
                 where T : Enum<T>, T : Animate {
-            val map = HashMap<String, List<BufferedImage>>()
+            val map = WeakHashMap<String, List<BufferedImage>>()
             val catVarious = when (Random.nextInt(0, 4)) {
                 0 -> "calico_cat"
                 1 -> "grey_tabby_cat"

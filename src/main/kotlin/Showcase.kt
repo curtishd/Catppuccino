@@ -1,8 +1,8 @@
 package me.cdh
 
-import me.cdh.enum.Behave
-import me.cdh.enum.BubbleState
-import me.cdh.enum.Direction
+import me.cdh.enumerate.Behave
+import me.cdh.enumerate.BubbleState
+import me.cdh.enumerate.Direction
 import java.awt.Graphics
 import javax.swing.JPanel
 
