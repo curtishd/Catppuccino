@@ -15,7 +15,9 @@
       "buildCommand": [
          "./gradlew",
          "buildExecutableJar"
-      ]
+      ],
+      "downloadPage": {"platforms": ["all"]},
+      "generateLegacyBundles": false
    },
    "dependencies": {
       "command-exists-promise": "^2.0.2",
