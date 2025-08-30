@@ -31,6 +31,7 @@ jobs:
            uses: shannah/jdeploy@master
            with:
               github_token: ${{ secrets.GITHUB_TOKEN }}
+              jdeploy_version: '5.0.1'
          - name: Upload Build Artifacts for DMG Action
            if: ${{ vars.JDEPLOY_CREATE_DMG == 'true' }}  # Only needed if creating DMG
            uses: actions/upload-artifact@v4
