@@ -5,7 +5,7 @@ name: jDeploy CI
 
 on:
    push:
-      branches: ['master', 'main', '!gh-pages']
+      branches: ['main', '!gh-pages']
       tags: ['*']
 
 jobs:
