@@ -31,18 +31,6 @@ company during your work or study time, bringing a touch of relaxation and delig
 
 ### or
 
-### **Build from source **
-
-```cmd
-    # powershell
-    git clone https://github.com/curtishd/Kitten.git
-    cd Kitten
-    .\gradlew.bat build
-    .\gradlew.bat copyDependencies
-    cp .\build\resources\main .\build\classes\kotlin\ -r -Force
-    java -p ".\build\libs;.\build\classes\kotlin" -m me.cdh/me.cdh.MainKt 
-```
-
 **Run the application**
 
 ```cmd
