@@ -1,8 +1,5 @@
 package me.cdh
 
-import me.cdh.enumerate.Behave
-import me.cdh.enumerate.BubbleState
-import me.cdh.enumerate.Direction
 import java.awt.Graphics
 import javax.swing.JPanel
 
@@ -15,26 +12,26 @@ object Showcase : JPanel() {
     }
 
     override fun paintComponent(g: Graphics?) {
-        var image = Compose.currFrames[Compose.frameNum]
-        if ((Compose.action == Behave.LAYING || Compose.action == Behave.RISING || Compose.action == Behave.SLEEP)
-            && Compose.layingDir == Direction.LEFT
-            || Compose.action == Behave.CURLED
-            && Compose.layingDir == Direction.RIGHT
+        var image = CatAnimationManager.currFrames[CatAnimationManager.frameNum]
+        if ((CatAnimationManager.currentAction == Behave.LAYING || CatAnimationManager.currentAction == Behave.RISING || CatAnimationManager.currentAction == Behave.SLEEP)
+            && CatAnimationManager.layingDir == Direction.LEFT
+            || CatAnimationManager.currentAction == Behave.CURLED
+            && CatAnimationManager.layingDir == Direction.RIGHT
         )
             image = flipImg(image)
         g!!.drawImage(image, 0, 0, 100, 100, null)
-        if (Compose.bubbleState != BubbleState.NONE) {
-            val curImg = Compose.currBubbleFrames[Compose.bubbleFrameIdx]
+        if (CatAnimationManager.bubbleState != BubbleState.NONE) {
+            val curImg = CatAnimationManager.currBubbleFrames[CatAnimationManager.bubbleFrame]
             var x = 30
             var y = 40
-            when (Compose.action) {
+            when (CatAnimationManager.currentAction) {
                 Behave.SLEEP, Behave.LAYING, Behave.LEFT, Behave.RIGHT -> x =
-                    if (Compose.layingDir == Direction.LEFT) 0 else x + 30
+                    if (CatAnimationManager.layingDir == Direction.LEFT) 0 else x + 30
 
                 Behave.UP, Behave.LICKING, Behave.SITTING -> y -= 25
                 else -> {}
             }
-            g.drawImage(curImg, x, y, 30, 30, null)
+            g.drawImage(curImg, x, y, BUBBLE_SIZE, BUBBLE_SIZE, null)
         }
     }
 }

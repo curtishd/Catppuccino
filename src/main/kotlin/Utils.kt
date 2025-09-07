@@ -1,28 +1,17 @@
 package me.cdh
 
-import java.awt.Image
-import java.awt.MenuItem
-import java.awt.PopupMenu
-import java.awt.SystemTray
-import java.awt.TrayIcon
-import java.awt.geom.AffineTransform
+import java.awt.*
 import java.awt.image.BufferedImage
-import java.time.LocalDateTime
 import javax.imageio.ImageIO
 import kotlin.system.exitProcess
 
-fun flipImg(img: BufferedImage): BufferedImage {
-    val mirror = BufferedImage(img.width, img.height, BufferedImage.TYPE_INT_ARGB)
-    val graphics = mirror.createGraphics()
-    val trans = AffineTransform()
-    trans.concatenate(AffineTransform.getScaleInstance(-1.0, 1.0))
-    trans.concatenate(AffineTransform.getTranslateInstance(-img.width.toDouble(), 0.0))
-    graphics.transform(trans)
-    graphics.drawImage(img, 0, 0, null)
-    graphics.dispose()
-    return mirror
-}
+fun flipImg(img: BufferedImage): BufferedImage =
+    BufferedImage(img.width, img.height, BufferedImage.TYPE_INT_ARGB).apply {
+        val g2d = createGraphics()
+        g2d.drawImage(img, img.width, 0, -img.width, img.height, null)
+        g2d.dispose()
 
+    }
 
 fun initSystemTray() {
     if (!SystemTray.isSupported()) return
@@ -40,5 +29,3 @@ fun initSystemTray() {
     trayIcon.popupMenu = popupMenu
     SystemTray.getSystemTray().add(trayIcon)
 }
-
-fun isDaytime(): Boolean = LocalDateTime.now().hour in 8..<18
