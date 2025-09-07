@@ -1,21 +1,39 @@
 package me.cdh
 
-import me.cdh.enumerate.Behave
-import javax.swing.SwingUtilities
-import kotlin.concurrent.timer
+import kotlinx.coroutines.*
+import kotlinx.coroutines.swing.Swing
+import java.time.LocalDateTime
 
 fun main() {
-    SwingUtilities.invokeLater {
-        initSystemTray()
-        Compose.changeAction(Behave.CURLED)
-        timer(period = 10L, action = {
-            Compose.updateBehave()
-            Compose.perform()
-            Compose.updateAnimation()
-            Compose.manageBubbleState()
-            Compose.win.repaint()
-        })
-        if (!isDaytime()) timer(period = 30000L, action = { Compose.tryWandering() })
-        else timer(period = 6000L, action = { Compose.tryWandering() })
+    runBlocking {
+        launch(Dispatchers.Swing) {
+            initSystemTray()
+            CatAnimationManager.changeAction(Behave.CURLED)
+        }
+        launch {
+            delay(10000L)
+            System.gc()
+        }
+        launch {
+            while (isActive) {
+                CatAnimationManager.handleFrames()
+                CatMovementManager.performMovement()
+                CatAnimationManager.updateAnimation()
+                CatAnimationManager.manageBubbleState()
+                CatAnimationManager.win.repaint()
+                delay(ANIMATION_UPDATE_DELAY)
+            }
+        }
+        launch {
+            val wanderInterval =
+                if (LocalDateTime.now().hour in 8..18)
+                    DAYTIME_WANDER_INTERVAL
+                else
+                    NIGHTTIME_WANDER_INTERVAL
+            while (isActive) {
+                CatMovementManager.tryWandering()
+                delay(wanderInterval)
+            }
+        }
     }
 }
