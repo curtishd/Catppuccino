@@ -4,51 +4,16 @@ import me.cdh.CatAnimationManager.currentAction
 import me.cdh.CatAnimationManager.state
 import me.cdh.CatAnimationManager.wanderLoc
 import me.cdh.CatAnimationManager.win
-import java.awt.*
-import java.awt.event.MouseAdapter
-import java.awt.event.MouseEvent
+import java.awt.Point
+import java.awt.Toolkit
 import java.awt.image.BufferedImage
-import javax.swing.JFrame
-import javax.swing.WindowConstants
 import kotlin.math.abs
 import kotlin.random.Random
 
 object CatAnimationManager {
-    val win = JFrame().apply {
-        type = Window.Type.UTILITY
-        defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
-        isUndecorated = true
-        val dim = Dimension(WINDOW_WIDTH, WINDOW_HEIGHT)
-        preferredSize = dim
-        minimumSize = dim
-        setLocationRelativeTo(null)
-        isAlwaysOnTop = true
-        isResizable = false
-        addMouseMotionListener(object : MouseAdapter() {
-            override fun mouseDragged(e: MouseEvent?) {
-                setLocation(e!!.locationOnScreen.x - width / 2, e.locationOnScreen.y - height / 2)
-                if (changeAction(Behave.RISING)) frameNum = 0
-            }
-        })
-        addMouseListener(object : MouseAdapter() {
-            override fun mouseReleased(e: MouseEvent?) {
-                if (currentAction == Behave.RISING) {
-                    changeAction(Behave.LAYING)
-                    frameNum = 0
-                }
-            }
-
-            override fun mouseClicked(e: MouseEvent?) {
-                bubbleState = BubbleState.HEART
-                bubbleFrame = 0
-            }
-        })
-        background = Color(1.0f, 1.0f, 1.0f, 0.0f)
-        isVisible = true
-        add(Showcase)
-    }
-    private val frames = ResourceLoader.loadRes(Behave.entries)
-    private val bubbleFrames = ResourceLoader.loadRes(BubbleState.entries)
+    val win = CatWindow()
+    private val frames by lazy { ResourceLoader.loadAllFrames<Behave>() }
+    private val bubbleFrames by lazy { ResourceLoader.loadAllFrames<BubbleState>() }
     var frameNum = 0
     var currentAction = Behave.SLEEP
     lateinit var currFrames: List<BufferedImage>
@@ -60,6 +25,10 @@ object CatAnimationManager {
     var bubbleFrame = 0
     var bubbleSteps = 0
     var animationSteps = 0
+
+    init {
+        ResourceLoader.preloadCommonResources()
+    }
 
     fun changeAction(behave: Behave): Boolean = if (currentAction != behave) {
         currentAction = behave
@@ -114,7 +83,7 @@ object CatAnimationManager {
         }
     }
 
-    fun updateBehave() {
+    fun handleFrames() {
         if (currentAction != Behave.RISING) {
             if (state == State.WANDER) {
                 val curPos = win.locationOnScreen

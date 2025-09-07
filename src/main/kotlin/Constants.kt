@@ -1,6 +1,6 @@
 package me.cdh
 
-
+const val PROJECT_NAME = "kitten"
 const val WINDOW_WIDTH = 100
 const val WINDOW_HEIGHT = 100
 const val ANIMATION_UPDATE_DELAY = 10L

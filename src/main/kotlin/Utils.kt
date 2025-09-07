@@ -17,10 +17,9 @@ fun initSystemTray() {
     if (!SystemTray.isSupported()) return
     val iconSize = SystemTray.getSystemTray().trayIconSize
     val trayIcon = TrayIcon(
-        ImageIO.read(Showcase::class.java.classLoader.getResourceAsStream("kitty.png")).getScaledInstance(
-            iconSize.width, iconSize.height,
-            Image.SCALE_SMOOTH
-        ), "kitty"
+        ImageIO.read(Stage::class.java.classLoader.getResourceAsStream("$PROJECT_NAME.png")).getScaledInstance(
+            iconSize.width, iconSize.height, Image.SCALE_SMOOTH
+        ), PROJECT_NAME
     )
     val popupMenu = PopupMenu()
     val exit = MenuItem("Exit")

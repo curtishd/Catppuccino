@@ -33,4 +33,3 @@ enum class BubbleState(
 enum class State { DEFAULT, WANDER }
 
 enum class Direction { RIGHT, LEFT }
-

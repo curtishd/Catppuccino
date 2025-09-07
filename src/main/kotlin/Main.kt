@@ -16,7 +16,7 @@ fun main() {
         }
         launch {
             while (isActive) {
-                CatAnimationManager.updateBehave()
+                CatAnimationManager.handleFrames()
                 CatMovementManager.performMovement()
                 CatAnimationManager.updateAnimation()
                 CatAnimationManager.manageBubbleState()
