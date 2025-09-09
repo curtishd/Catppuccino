@@ -11,10 +11,6 @@ fun main() {
             CatAnimationManager.changeAction(Behave.CURLED)
         }
         launch {
-            delay(10000L)
-            System.gc()
-        }
-        launch {
             while (isActive) {
                 CatAnimationManager.handleFrames()
                 CatMovementManager.performMovement()

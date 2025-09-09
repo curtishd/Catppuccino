@@ -43,11 +43,6 @@ tasks.jar {
     }
 }
 
-tasks.register("buildExecutableJar") {
-    dependsOn("jar")
-    description = "Build executable JAR with dependencies for jDeploy"
-}
-
 tasks.withType<KotlinCompile> {
     compilerOptions {
         destinationDirectory.set(layout.buildDirectory.dir("classes/kotlin/main"))
