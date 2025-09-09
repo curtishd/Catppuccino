@@ -26,10 +26,6 @@ object CatAnimationManager {
     var bubbleSteps = 0
     var animationSteps = 0
 
-    init {
-        ResourceLoader.preloadCommonResources()
-    }
-
     fun changeAction(behave: Behave): Boolean = if (currentAction != behave) {
         currentAction = behave
         currFrames = frames[currentAction.name]!!
