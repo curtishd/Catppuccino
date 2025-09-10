@@ -12,8 +12,8 @@ import kotlin.random.Random
 
 object CatAnimationManager {
     val win = CatWindow()
-    private val frames by lazy(LazyThreadSafetyMode.NONE) { ResourceLoader.loadAllFrames<Behave>() }
-    private val bubbleFrames by lazy(LazyThreadSafetyMode.NONE) { ResourceLoader.loadAllFrames<BubbleState>() }
+    private val frames = ResourceLoader.loadAllFrames<Behave>()
+    private val bubbleFrames = ResourceLoader.loadAllFrames<BubbleState>()
     var frameNum = 0
     var currentAction = Behave.SLEEP
     lateinit var currFrames: List<BufferedImage>
