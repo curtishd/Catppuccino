@@ -21,7 +21,8 @@ class CatWindow : JWindow() {
         isAlwaysOnTop = true
         addMouseMotionListener(object : MouseAdapter() {
             override fun mouseDragged(e: MouseEvent?) {
-                setLocation(e!!.locationOnScreen.x - width / 2, e.locationOnScreen.y - height / 2)
+                e ?: return
+                setLocation(e.locationOnScreen.x - width / 2, e.locationOnScreen.y - height / 2)
                 if (changeAction(Behave.RISING)) frameNum = 0
             }
         })

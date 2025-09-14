@@ -12,6 +12,12 @@ fun main() {
         }
         launch {
             while (isActive) {
+                System.gc()
+                delay(10000L)
+            }
+        }
+        launch {
+            while (isActive) {
                 CatAnimationManager.handleFrames()
                 CatMovementManager.performMovement()
                 CatAnimationManager.updateAnimation()
