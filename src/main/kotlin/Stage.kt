@@ -1,17 +1,12 @@
 package me.cdh
 
+import me.cdh.CatAnimationManager.bubbleFrame
+import me.cdh.CatAnimationManager.frameNum
 import java.awt.Graphics
 import java.awt.Point
-import java.awt.image.BufferedImage
 import javax.swing.JPanel
 
 object Stage : JPanel() {
-
-    private val CatAnimationManager.currentImage: BufferedImage?
-        get() = currFrames.getOrNull(frameNum)
-
-    private val CatAnimationManager.currentBubbleImage: BufferedImage?
-        get() = currBubbleFrames.getOrNull(bubbleFrame)
 
     const val BASE_X = 30
     const val BASE_Y = 40
@@ -19,12 +14,6 @@ object Stage : JPanel() {
     init {
         isOpaque = false
     }
-
-    private fun Graphics.drawCatImage(img: BufferedImage) =
-        drawImage(img, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, null)
-
-    private fun Graphics.drawBubbleImage(img: BufferedImage, position: Point) =
-        drawImage(img, position.x, position.y, BUBBLE_SIZE, BUBBLE_SIZE, null)
 
     private fun needsFlipping(behave: Behave, direction: Direction) =
         (behave == Behave.LAYING || behave == Behave.RISING || behave == Behave.SLEEP)
@@ -49,13 +38,13 @@ object Stage : JPanel() {
 
     override fun paintComponent(g: Graphics?) {
         val manager = CatAnimationManager
-        val img = manager.currentImage ?: return
+        val img = manager.currFrames.getOrNull(frameNum) ?: return
         val flippedImage = if (needsFlipping(manager.currentAction, manager.layingDir)) flipImg(img) else img
-        g?.drawCatImage(flippedImage) ?: return
+        g?.drawImage(flippedImage, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, null) ?: return
         if (manager.bubbleState != BubbleState.NONE) {
-            manager.currentBubbleImage?.let { bubbleImg ->
+            manager.currBubbleFrames.getOrNull(bubbleFrame)?.let { bubbleImg ->
                 val position = calculateBubblePosition(manager.currentAction, manager.layingDir)
-                g.drawBubbleImage(bubbleImg, position)
+                g.drawImage(bubbleImg, position.x, position.y, BUBBLE_SIZE, BUBBLE_SIZE, null)
             }
         }
     }
