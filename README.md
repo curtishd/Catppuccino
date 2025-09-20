@@ -1,4 +1,4 @@
-# 🐱🐱 Kitten 🐱🐱
+# 🐱🐱 Catppuccino 🐱🐱
 
 ![curled_1.png](src/main/resources/white_cat/curled/curled_1.png)![curled_1.png](src/main/resources/orange_cat/curled/curled_1.png)![curled_1.png](src/main/resources/grey_tabby_cat/curled/curled_1.png)![curled_1.png](src/main/resources/calico_cat/curled/curled_1.png)
 

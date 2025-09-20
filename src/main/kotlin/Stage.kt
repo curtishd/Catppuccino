@@ -2,6 +2,9 @@ package me.cdh
 
 import me.cdh.CatAnimationManager.bubbleFrame
 import me.cdh.CatAnimationManager.frameNum
+import me.cdh.constant.Behave
+import me.cdh.constant.BubbleState
+import me.cdh.constant.Direction
 import java.awt.Graphics
 import java.awt.Point
 import javax.swing.JPanel

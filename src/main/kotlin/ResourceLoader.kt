@@ -5,7 +5,7 @@ import javax.imageio.ImageIO
 
 object ResourceLoader {
     private val cachedResources = mutableMapOf<String, List<BufferedImage>>()
-    private val catType = listOf("calico_cat", "grey_tabby_cat", "orange_cat", "white_cat")
+    var catType = listOf("calico_cat", "grey_tabby_cat", "orange_cat", "white_cat")
     private val selectedCatType = catType.random()
 
     fun loadFrame(actionName: String, frameCount: Int): List<BufferedImage> = (1..frameCount).mapNotNull { frameNum ->

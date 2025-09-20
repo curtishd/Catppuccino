@@ -5,6 +5,8 @@ import me.cdh.CatAnimationManager.bubbleState
 import me.cdh.CatAnimationManager.changeAction
 import me.cdh.CatAnimationManager.currentAction
 import me.cdh.CatAnimationManager.frameNum
+import me.cdh.constant.Behave
+import me.cdh.constant.BubbleState
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.event.MouseAdapter

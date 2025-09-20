@@ -2,6 +2,7 @@ package me.cdh
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.swing.Swing
+import me.cdh.constant.Behave
 import java.time.LocalDateTime
 
 fun main() {
