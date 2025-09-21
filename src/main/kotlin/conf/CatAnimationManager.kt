@@ -1,29 +1,27 @@
 package me.cdh.conf
 
+import me.cdh.conf.CatProp.animationSteps
+import me.cdh.conf.CatProp.bubbleFrame
+import me.cdh.conf.CatProp.bubbleFrames
+import me.cdh.conf.CatProp.bubbleState
+import me.cdh.conf.CatProp.bubbleSteps
+import me.cdh.conf.CatProp.currBubbleFrames
+import me.cdh.conf.CatProp.currFrames
+import me.cdh.conf.CatProp.currentAction
+import me.cdh.conf.CatProp.frameNum
+import me.cdh.conf.CatProp.frames
+import me.cdh.conf.CatProp.layingDir
+import me.cdh.conf.CatProp.state
+import me.cdh.conf.CatProp.wanderLoc
+import me.cdh.conf.CatProp.win
 import me.cdh.constant.Behave
 import me.cdh.constant.BubbleState
 import me.cdh.constant.Direction
 import me.cdh.constant.State
-import java.awt.Point
-import java.awt.image.BufferedImage
 import kotlin.math.abs
 import kotlin.random.Random
 
 object CatAnimationManager {
-    val win = CatWindow()
-    private val frames = ResourceLoader.loadAllFrames<Behave>()
-    private val bubbleFrames = ResourceLoader.loadAllFrames<BubbleState>()
-    var frameNum = 0
-    var currentAction = Behave.SLEEP
-    lateinit var currFrames: List<BufferedImage>
-    lateinit var currBubbleFrames: List<BufferedImage>
-    var layingDir = Direction.RIGHT
-    var state = State.DEFAULT
-    var wanderLoc = Point(0, 0)
-    var bubbleState = BubbleState.NONE
-    var bubbleFrame = 0
-    var bubbleSteps = 0
-    var animationSteps = 0
 
     fun changeAction(behave: Behave): Boolean = if (currentAction != behave) {
         currentAction = behave

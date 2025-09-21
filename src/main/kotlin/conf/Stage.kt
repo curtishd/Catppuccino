@@ -3,6 +3,13 @@ package me.cdh.conf
 import me.cdh.BUBBLE_SIZE
 import me.cdh.WINDOW_HEIGHT
 import me.cdh.WINDOW_WIDTH
+import me.cdh.conf.CatProp.bubbleFrame
+import me.cdh.conf.CatProp.bubbleState
+import me.cdh.conf.CatProp.currBubbleFrames
+import me.cdh.conf.CatProp.currFrames
+import me.cdh.conf.CatProp.currentAction
+import me.cdh.conf.CatProp.frameNum
+import me.cdh.conf.CatProp.layingDir
 import me.cdh.constant.Behave
 import me.cdh.constant.BubbleState
 import me.cdh.constant.Direction
@@ -42,13 +49,12 @@ object Stage : JPanel() {
     }
 
     override fun paintComponent(g: Graphics?) {
-        val manager = CatAnimationManager
-        val img = manager.currFrames.getOrNull(CatAnimationManager.frameNum) ?: return
-        val flippedImage = if (needsFlipping(manager.currentAction, manager.layingDir)) flipImg(img) else img
+        val img = currFrames.getOrNull(frameNum) ?: return
+        val flippedImage = if (needsFlipping(currentAction, layingDir)) flipImg(img) else img
         g?.drawImage(flippedImage, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, null) ?: return
-        if (manager.bubbleState != BubbleState.NONE) {
-            manager.currBubbleFrames.getOrNull(CatAnimationManager.bubbleFrame)?.let { bubbleImg ->
-                val position = calculateBubblePosition(manager.currentAction, manager.layingDir)
+        if (bubbleState != BubbleState.NONE) {
+            currBubbleFrames.getOrNull(bubbleFrame)?.let { bubbleImg ->
+                val position = calculateBubblePosition(currentAction, layingDir)
                 g.drawImage(bubbleImg, position.x, position.y, BUBBLE_SIZE, BUBBLE_SIZE, null)
             }
         }

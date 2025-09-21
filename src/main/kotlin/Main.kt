@@ -4,6 +4,7 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.swing.Swing
 import me.cdh.conf.CatAnimationManager
 import me.cdh.conf.CatMovementManager
+import me.cdh.conf.CatProp
 import me.cdh.constant.Behave
 import java.time.LocalDateTime
 
@@ -25,7 +26,7 @@ fun main() {
                 CatMovementManager.performMovement()
                 CatAnimationManager.updateAnimation()
                 CatAnimationManager.manageBubbleState()
-                CatAnimationManager.win.repaint()
+                CatProp.win.repaint()
                 delay(ANIMATION_UPDATE_DELAY)
             }
         }

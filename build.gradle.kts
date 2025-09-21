@@ -26,6 +26,7 @@ kotlin {
 
 application {
     mainClass.set("me.cdh.MainKt")
+    mainModule.set("me.cdh")
 }
 
 tasks.register<Copy>("copyDependencies") {
