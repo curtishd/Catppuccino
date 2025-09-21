@@ -1,5 +1,6 @@
-package me.cdh
+package me.cdh.conf
 
+import me.cdh.Animate
 import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
 

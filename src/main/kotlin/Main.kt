@@ -2,6 +2,8 @@ package me.cdh
 
 import kotlinx.coroutines.*
 import kotlinx.coroutines.swing.Swing
+import me.cdh.conf.CatAnimationManager
+import me.cdh.conf.CatMovementManager
 import me.cdh.constant.Behave
 import java.time.LocalDateTime
 

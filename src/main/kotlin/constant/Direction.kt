@@ -1,3 +1,6 @@
 package me.cdh.constant
 
-enum class Direction { RIGHT, LEFT }
+enum class Direction {
+    RIGHT,
+    LEFT
+}

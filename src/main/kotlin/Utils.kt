@@ -1,5 +1,6 @@
 package me.cdh
 
+import me.cdh.conf.Stage
 import java.awt.*
 import java.awt.image.BufferedImage
 import javax.imageio.ImageIO

@@ -1,4 +1,4 @@
-package me.cdh
+package me.cdh.conf
 
 import me.cdh.constant.Behave
 import me.cdh.constant.BubbleState
@@ -104,4 +104,3 @@ object CatAnimationManager {
         }
     }
 }
-

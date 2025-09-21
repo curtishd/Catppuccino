@@ -1,3 +1,6 @@
 package me.cdh.constant
 
-enum class State { DEFAULT, WANDER }
+enum class State {
+    DEFAULT,
+    WANDER
+}
