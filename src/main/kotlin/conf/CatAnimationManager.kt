@@ -14,10 +14,10 @@ import me.cdh.conf.CatProp.layingDir
 import me.cdh.conf.CatProp.state
 import me.cdh.conf.CatProp.wanderLoc
 import me.cdh.conf.CatProp.win
-import me.cdh.constant.Behave
-import me.cdh.constant.BubbleState
-import me.cdh.constant.Direction
-import me.cdh.constant.State
+import me.cdh.Behave
+import me.cdh.BubbleState
+import me.cdh.Direction
+import me.cdh.State
 import kotlin.math.abs
 import kotlin.random.Random
 

@@ -3,8 +3,8 @@ package me.cdh.conf
 import me.cdh.conf.CatProp.currentAction
 import me.cdh.conf.CatProp.state
 import me.cdh.conf.CatProp.wanderLoc
-import me.cdh.constant.Behave
-import me.cdh.constant.State
+import me.cdh.Behave
+import me.cdh.State
 import me.cdh.conf.CatProp.win
 import java.awt.Point
 import java.awt.Toolkit

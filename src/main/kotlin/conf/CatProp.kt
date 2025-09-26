@@ -1,9 +1,9 @@
 package me.cdh.conf
 
-import me.cdh.constant.Behave
-import me.cdh.constant.BubbleState
-import me.cdh.constant.Direction
-import me.cdh.constant.State
+import me.cdh.Behave
+import me.cdh.BubbleState
+import me.cdh.Direction
+import me.cdh.State
 import java.awt.Point
 import java.awt.image.BufferedImage
 

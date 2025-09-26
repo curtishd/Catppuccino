@@ -7,8 +7,8 @@ import me.cdh.conf.CatProp.bubbleFrame
 import me.cdh.conf.CatProp.bubbleState
 import me.cdh.conf.CatProp.currentAction
 import me.cdh.conf.CatProp.frameNum
-import me.cdh.constant.Behave
-import me.cdh.constant.BubbleState
+import me.cdh.Behave
+import me.cdh.BubbleState
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.event.MouseAdapter

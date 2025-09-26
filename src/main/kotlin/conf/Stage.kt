@@ -10,9 +10,9 @@ import me.cdh.conf.CatProp.currFrames
 import me.cdh.conf.CatProp.currentAction
 import me.cdh.conf.CatProp.frameNum
 import me.cdh.conf.CatProp.layingDir
-import me.cdh.constant.Behave
-import me.cdh.constant.BubbleState
-import me.cdh.constant.Direction
+import me.cdh.Behave
+import me.cdh.BubbleState
+import me.cdh.Direction
 import me.cdh.flipImg
 import java.awt.Graphics
 import java.awt.Point

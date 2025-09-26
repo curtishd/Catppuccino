@@ -12,6 +12,11 @@ repositories {
     mavenCentral()
 }
 
+application {
+    mainClass = "me.cdh.MainKt"
+    mainModule = "me.cdh"
+}
+
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.10.2")
     testImplementation(kotlin("test"))
@@ -24,14 +29,17 @@ kotlin {
     jvmToolchain(21)
 }
 
-application {
-    mainClass.set("me.cdh.MainKt")
-    mainModule.set("me.cdh")
+tasks.register<Copy>("copyResourcesToClass") {
+    from(layout.buildDirectory.dir("resources"))
+    into(layout.buildDirectory.dir("classes/kotlin"))
 }
-
 tasks.register<Copy>("copyDependencies") {
     from(configurations.runtimeClasspath)
     into(layout.buildDirectory.dir("libs/lib"))
+}
+tasks.build{
+    mustRunAfter("copyDependencies")
+    finalizedBy("copyResourcesToClass")
 }
 
 tasks.jar {
