@@ -7,38 +7,47 @@ import me.cdh.conf.CatMovementManager
 import me.cdh.conf.CatProp
 import java.time.LocalDateTime
 
+
+private fun initSystemTrayAndCat() {
+    initSystemTray()
+    CatAnimationManager.changeAction(Behave.CURLED)
+}
+
+private suspend fun CoroutineScope.tryGc() {
+    while (isActive) {
+        System.gc()
+        delay(10000L)
+    }
+}
+
+private suspend fun CoroutineScope.startMainAnimationLoop() {
+    while (isActive) {
+        CatAnimationManager.handleFrames()
+        CatMovementManager.performMovement()
+        CatAnimationManager.updateAnimation()
+        CatAnimationManager.manageBubbleState()
+        CatProp.win.repaint()
+        delay(ANIMATION_UPDATE_DELAY)
+    }
+}
+
+private suspend fun CoroutineScope.startWanderingBehavior() {
+    val wanderInterval =
+        if (LocalDateTime.now().hour in 8..18)
+            DAYTIME_WANDER_INTERVAL
+        else
+            NIGHTTIME_WANDER_INTERVAL
+    while (isActive) {
+        CatMovementManager.tryWandering()
+        delay(wanderInterval)
+    }
+}
+
 fun main() {
     runBlocking {
-        launch(Dispatchers.Swing) {
-            initSystemTray()
-            CatAnimationManager.changeAction(Behave.CURLED)
-        }
-        launch {
-            while (isActive) {
-                System.gc()
-                delay(10000L)
-            }
-        }
-        launch {
-            while (isActive) {
-                CatAnimationManager.handleFrames()
-                CatMovementManager.performMovement()
-                CatAnimationManager.updateAnimation()
-                CatAnimationManager.manageBubbleState()
-                CatProp.win.repaint()
-                delay(ANIMATION_UPDATE_DELAY)
-            }
-        }
-        launch {
-            val wanderInterval =
-                if (LocalDateTime.now().hour in 8..18)
-                    DAYTIME_WANDER_INTERVAL
-                else
-                    NIGHTTIME_WANDER_INTERVAL
-            while (isActive) {
-                CatMovementManager.tryWandering()
-                delay(wanderInterval)
-            }
-        }
+        launch(Dispatchers.Swing) { initSystemTrayAndCat() }
+        launch { tryGc() }
+        launch { startMainAnimationLoop() }
+        launch { startWanderingBehavior() }
     }
 }

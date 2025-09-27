@@ -18,5 +18,5 @@ jobs:
       - run: jpackage -t app-image -n catppuccino -p "build\libs\lib;build\classes\kotlin\main" -m me.cdh/me.cdh.MainKt --jlink-options "--compress zip-9 --strip-native-commands --strip-debug --no-header-files --no-man-pages" --java-options "-Xmx50m" --dest output --icon build\classes\kotlin\main\catppuccino.ico
       - uses: actions/upload-artifact@v4
         with:
-          name: kitten
+          name: catppuccino
           path: .\output
