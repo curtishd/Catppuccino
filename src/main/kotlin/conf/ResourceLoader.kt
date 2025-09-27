@@ -5,7 +5,13 @@ import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
 
 object ResourceLoader {
-    var catType = listOf("calico_cat", "grey_tabby_cat", "orange_cat", "white_cat")
+    var catType = listOf(
+        "calico_cat",
+        "grey_tabby_cat",
+        "orange_cat",
+        "white_cat",
+        "bengal_cat"
+    )
     private val selectedCatType = catType.random()
 
     fun loadFrames(actionName: String, frameCount: Int): List<BufferedImage> = (1..frameCount).mapNotNull { frameNum ->
