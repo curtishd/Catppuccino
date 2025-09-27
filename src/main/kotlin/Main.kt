@@ -9,8 +9,6 @@ import java.time.LocalDateTime
 
 
 object Main {
-    lateinit var mainAnimation: Job
-    lateinit var wanderBehavior: Job
     private fun initSystemTrayAndCat() {
         initSystemTray()
         CatAnimationManager.changeAction(Behave.CURLED)
@@ -51,8 +49,8 @@ object Main {
         runBlocking {
             launch(Dispatchers.Swing) { initSystemTrayAndCat() }
             launch { tryGc() }
-            mainAnimation = launch { startMainAnimationLoop() }
-            wanderBehavior = launch { startWanderingBehavior() }
+            launch { startMainAnimationLoop() }
+            launch { startWanderingBehavior() }
         }
     }
 }
