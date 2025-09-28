@@ -10,7 +10,6 @@ object ResourceLoader {
         "grey_tabby_cat",
         "orange_cat",
         "white_cat",
-        "bengal_cat"
     )
     private val selectedCatType = catType.random()
 
