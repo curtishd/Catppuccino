@@ -33,13 +33,10 @@ tasks.register<Copy>("copyResourcesToClass") {
     from(layout.buildDirectory.dir("resources"))
     into(layout.buildDirectory.dir("classes/kotlin"))
 }
+
 tasks.register<Copy>("copyDependencies") {
     from(configurations.runtimeClasspath)
     into(layout.buildDirectory.dir("libs/lib"))
-}
-tasks.build{
-    mustRunAfter("copyDependencies")
-    finalizedBy("copyResourcesToClass")
 }
 
 tasks.jar {
