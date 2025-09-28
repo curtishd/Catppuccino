@@ -18,8 +18,8 @@ import me.cdh.Behave
 import me.cdh.BubbleState
 import me.cdh.Direction
 import me.cdh.State
+import me.cdh.Random
 import kotlin.math.abs
-import kotlin.random.Random
 
 object CatAnimationManager {
 

@@ -1,6 +1,7 @@
 package me.cdh.conf
 
 import me.cdh.Animate
+import me.cdh.Random
 import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
 
@@ -11,7 +12,7 @@ object ResourceLoader {
         "orange_cat",
         "white_cat",
     )
-    private val selectedCatType = catType.random()
+    private val selectedCatType = catType[Random.nextInt(0, catType.size)]
 
     fun loadFrames(actionName: String, frameCount: Int): List<BufferedImage> = (1..frameCount).mapNotNull { frameNum ->
         javaClass.classLoader.getResourceAsStream(

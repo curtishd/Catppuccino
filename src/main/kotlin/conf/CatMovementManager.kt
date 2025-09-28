@@ -6,10 +6,10 @@ import me.cdh.conf.CatProp.wanderLoc
 import me.cdh.Behave
 import me.cdh.State
 import me.cdh.conf.CatProp.win
+import me.cdh.Random
 import java.awt.Point
 import java.awt.Toolkit
 import kotlin.math.abs
-import kotlin.random.Random
 
 object CatMovementManager {
 
