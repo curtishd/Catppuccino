@@ -7,7 +7,7 @@ import java.util.random.RandomGenerator
 import javax.imageio.ImageIO
 import kotlin.system.exitProcess
 
-const val PROJECT_NAME = "catppuccino"
+const val PROJECT_NAME = "Catppuccino"
 const val WINDOW_WIDTH = 100
 const val WINDOW_HEIGHT = 100
 const val ANIMATION_UPDATE_DELAY = 10L

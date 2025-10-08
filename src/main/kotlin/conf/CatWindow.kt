@@ -11,6 +11,7 @@ import me.cdh.Behave
 import me.cdh.BubbleState
 import java.awt.Color
 import java.awt.Dimension
+import java.awt.Point
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import javax.swing.JWindow
@@ -23,26 +24,37 @@ class CatWindow : JWindow() {
         minimumSize = dim
         setLocationRelativeTo(null)
         isAlwaysOnTop = true
-        addMouseMotionListener(object : MouseAdapter() {
-            override fun mouseDragged(e: MouseEvent?) {
-                e ?: return
-                setLocation(e.locationOnScreen.x - width / 2, e.locationOnScreen.y - height / 2)
+        val mouseAdapter = object : MouseAdapter() {
+            private var dragOffset: Point? = null
+            override fun mousePressed(e: MouseEvent) {
+                super.mousePressed(e)
+                dragOffset = Point(e.x, e.y)
+            }
+
+            override fun mouseDragged(e: MouseEvent) {
+                super.mouseDragged(e)
+                dragOffset?.let {
+                    setLocation(e.locationOnScreen.x - it.x, e.locationOnScreen.y - it.y)
+                }
                 if (changeAction(Behave.RISING)) frameNum = 0
             }
-        })
-        addMouseListener(object : MouseAdapter() {
-            override fun mouseReleased(e: MouseEvent?) {
+
+            override fun mouseReleased(e: MouseEvent) {
+                super.mouseReleased(e)
                 if (currentAction == Behave.RISING) {
                     changeAction(Behave.LAYING)
                     frameNum = 0
                 }
             }
 
-            override fun mouseClicked(e: MouseEvent?) {
+            override fun mouseClicked(e: MouseEvent) {
+                super.mouseClicked(e)
                 bubbleState = BubbleState.HEART
                 bubbleFrame = 0
             }
-        })
+        }
+        addMouseMotionListener(mouseAdapter)
+        addMouseListener(mouseAdapter)
         background = Color(1.0f, 1.0f, 1.0f, 0.0f)
         isVisible = true
         add(Stage)
