@@ -14,7 +14,6 @@ repositories {
 
 application {
     mainClass = "me.cdh.Main"
-    mainModule = "me.cdh"
 }
 
 dependencies {

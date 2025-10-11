@@ -7,18 +7,10 @@ import me.cdh.conf.CatMovementManager
 import me.cdh.conf.CatProp
 import java.time.LocalDateTime
 
-
 object Main {
     private fun initSystemTrayAndCat() {
         initSystemTray()
         CatAnimationManager.changeAction(Behave.CURLED)
-    }
-
-    private suspend fun CoroutineScope.tryGc() {
-        while (isActive) {
-            System.gc()
-            delay(10000L)
-        }
     }
 
     private suspend fun CoroutineScope.startMainAnimationLoop() {
@@ -48,7 +40,6 @@ object Main {
     fun main(args: Array<String>) {
         runBlocking {
             launch(Dispatchers.Swing) { initSystemTrayAndCat() }
-            launch { tryGc() }
             launch { startMainAnimationLoop() }
             launch { startWanderingBehavior() }
         }

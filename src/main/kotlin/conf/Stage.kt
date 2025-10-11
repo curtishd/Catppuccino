@@ -18,10 +18,11 @@ import java.awt.Graphics
 import java.awt.Point
 import javax.swing.JPanel
 
-object Stage : JPanel() {
-
-    const val BASE_X = 30
-    const val BASE_Y = 40
+class Stage : JPanel() {
+    companion object {
+        const val BASE_X = 30
+        const val BASE_Y = 40
+    }
 
     init {
         isOpaque = false
@@ -40,9 +41,7 @@ object Stage : JPanel() {
                 Point(x, BASE_Y)
             }
 
-            Behave.UP, Behave.LICKING, Behave.SITTING -> {
-                Point(BASE_X, BASE_Y - 25)
-            }
+            Behave.UP, Behave.LICKING, Behave.SITTING -> Point(BASE_X, BASE_Y - 25)
 
             else -> Point(BASE_X, BASE_Y)
         }
@@ -59,7 +58,4 @@ object Stage : JPanel() {
             }
         }
     }
-
-    @Suppress
-    private fun readResolve(): Any = Stage
 }
