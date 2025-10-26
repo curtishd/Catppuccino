@@ -3,7 +3,6 @@ package me.cdh
 import me.cdh.conf.Stage
 import java.awt.*
 import java.awt.image.BufferedImage
-import java.util.random.RandomGenerator
 import javax.imageio.ImageIO
 import kotlin.system.exitProcess
 
@@ -14,8 +13,6 @@ const val ANIMATION_UPDATE_DELAY = 10L
 const val DAYTIME_WANDER_INTERVAL = 6000L
 const val NIGHTTIME_WANDER_INTERVAL = 30000L
 const val BUBBLE_SIZE = 30
-
-val Random = RandomGenerator.getDefault()!!
 
 fun flipImg(img: BufferedImage): BufferedImage {
     val imageToFlip = BufferedImage(img.width, img.height, BufferedImage.TYPE_INT_ARGB)

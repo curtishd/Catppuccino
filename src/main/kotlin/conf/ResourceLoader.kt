@@ -1,26 +1,23 @@
 package me.cdh.conf
 
 import me.cdh.Animate
-import me.cdh.Random
 import java.awt.image.BufferedImage
-import java.lang.ref.WeakReference
 import javax.imageio.ImageIO
+import kotlin.random.Random
 
 object ResourceLoader {
-    var catType = WeakReference(
-        listOf(
+    var catType = listOf(
             "calico_cat",
             "grey_tabby_cat",
             "orange_cat",
             "white_cat",
         )
-    )
-    private val selectedCatType: WeakReference<String> =
-        WeakReference(catType.get()!![Random.nextInt(0, catType.get()!!.size)])
+    private val selectedCatType =
+        catType[Random.nextInt(0, catType.size)]
 
     fun loadFrames(actionName: String, frameCount: Int): List<BufferedImage> = (1..frameCount).mapNotNull { frameNum ->
         javaClass.classLoader.getResourceAsStream(
-            "${selectedCatType.get()}/${actionName.lowercase()}/${actionName.lowercase()}_$frameNum.png"
+            "$selectedCatType/${actionName.lowercase()}/${actionName.lowercase()}_$frameNum.png"
         )?.use { ImageIO.read(it) }
     }
 
