@@ -10,7 +10,7 @@ jobs:
         include:
           - os: macos-latest
             shell: bash
-          - os: ubuntu-latest  
+          - os: ubuntu-latest
             shell: bash
           - os: windows-latest
             shell: powershell
@@ -26,7 +26,7 @@ jobs:
           java-version: '21'
 
       - name: List files
-        run: ${{ matrix.shell == 'powershell' && 'ls' || 'ls -la' }}
+        run: ${{ matrix.shell == 'powershell' && 'Get-ChildItem' || 'ls -la' }}
 
       - name: Make gradlew executable
         if: matrix.shell == 'bash'
@@ -36,12 +36,13 @@ jobs:
         run: ${{ matrix.shell == 'powershell' && '.\gradlew.bat build' || './gradlew build' }}
 
       - name: Copy resources
+        shell: ${{ matrix.shell == 'powershell' && 'pwsh' || 'bash' }}
         run: |
-          if [ "${{ matrix.shell }}" = "powershell" ]; then
-            cp .\build\resources\main\* .\build\classes\kotlin\main\ -r -Force
-          else
+          if ("${{ matrix.shell }}" -eq "powershell") {
+            Copy-Item -Path ".\build\resources\main\*" -Destination ".\build\classes\kotlin\main\" -Recurse -Force
+          } else {
             cp -r ./build/resources/main/* ./build/classes/kotlin/main/
-          fi
+          }
 
       - name: Copy dependencies
         run: ${{ matrix.shell == 'powershell' && '.\gradlew.bat copyDependencies' || './gradlew copyDependencies' }}
@@ -50,15 +51,16 @@ jobs:
         run: ${{ matrix.shell == 'powershell' && 'cd build' || 'cd build' }}
 
       - name: Package as native executable
+        shell: ${{ matrix.shell == 'powershell' && 'pwsh' || 'bash' }}
         run: |
-          if [ "${{ matrix.shell }}" = "powershell" ]; then
+          if ("${{ matrix.shell }}" -eq "powershell") {
             jpackage -t app-image -n catppuccino -p "build\libs\lib;build\classes\kotlin\main" -m me.cdh/me.cdh.Main --jlink-options "--compress zip-9 --strip-native-commands --strip-debug --no-header-files --no-man-pages" --dest output --icon build\classes\kotlin\main\catppuccino.ico --copyright curtishd
-          else
+          } else {
             jpackage -t app-image -n catppuccino -p "./build/libs/lib:./build/classes/kotlin/main" -m me.cdh/me.cdh.Main --jlink-options "--compress zip-9 --strip-native-commands --strip-debug --no-header-files --no-man-pages" --dest output --copyright curtishd
-          fi
+          }
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: catppuccino-${{ matrix.os }}
-          path: ${{ matrix.shell == 'powershell' && '.\\output' || './output' }}
+          path: ${{ matrix.shell == 'powershell' && 'output' || './output' }}
