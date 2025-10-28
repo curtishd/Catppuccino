@@ -14,13 +14,6 @@ object Main {
         CatAnimationManager.changeAction(Behave.CURLED)
     }
 
-    private suspend fun CoroutineScope.tryGc() {
-        while (isActive) {
-            System.gc()
-            delay(10000L)
-        }
-    }
-
     private suspend fun CoroutineScope.startMainAnimationLoop() {
         while (isActive) {
             CatAnimationManager.handleFrames()
@@ -47,8 +40,7 @@ object Main {
     @JvmStatic
     fun main(args: Array<String>) {
         runBlocking {
-            launch(Dispatchers.Swing) { initSystemTrayAndCat() }
-            launch { tryGc() }
+            launch(Dispatchers.Swing.limitedParallelism(1)) { initSystemTrayAndCat() }
             launch { startMainAnimationLoop() }
             launch { startWanderingBehavior() }
         }
