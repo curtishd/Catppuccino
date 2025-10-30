@@ -33,7 +33,7 @@ tasks.register<Copy>("copyResourcesToClass") {
 
 tasks.register<Copy>("copyDependencies") {
     from(configurations.runtimeClasspath)
-    into(layout.buildDirectory.dir("libs/lib"))
+    into(layout.buildDirectory.dir("libs"))
 }
 
 tasks.jar {
@@ -41,7 +41,7 @@ tasks.jar {
     manifest {
         attributes(
             "Main-Class" to "me.cdh.MainKt",
-            "Class-Path" to configurations.runtimeClasspath.get().joinToString(" ") { "lib/" + it.name }
+            "Class-Path" to configurations.runtimeClasspath.get().joinToString(" ") { it.name }
         )
     }
 }
