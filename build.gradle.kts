@@ -13,7 +13,7 @@ repositories {
 }
 
 application {
-    mainClass = "me.cdh.Main"
+    mainClass = "me.cdh.MainKt"
     mainModule = "me.cdh"
 }
 
@@ -40,7 +40,7 @@ tasks.jar {
     dependsOn("copyDependencies")
     manifest {
         attributes(
-            "Main-Class" to "me.cdh.Main",
+            "Main-Class" to "me.cdh.MainKt",
             "Class-Path" to configurations.runtimeClasspath.get().joinToString(" ") { "lib/" + it.name }
         )
     }

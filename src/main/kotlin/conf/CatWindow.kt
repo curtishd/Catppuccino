@@ -2,11 +2,6 @@ package me.cdh.conf
 
 import me.cdh.WINDOW_HEIGHT
 import me.cdh.WINDOW_WIDTH
-import me.cdh.conf.CatAnimationManager.changeAction
-import me.cdh.conf.CatProp.bubbleFrame
-import me.cdh.conf.CatProp.bubbleState
-import me.cdh.conf.CatProp.currentAction
-import me.cdh.conf.CatProp.frameNum
 import me.cdh.Behave
 import me.cdh.BubbleState
 import java.awt.Color
@@ -57,6 +52,6 @@ class CatWindow : JWindow() {
         addMouseListener(mouseAdapter)
         background = Color(1.0f, 1.0f, 1.0f, 0.0f)
         isVisible = true
-        add(Stage)
+        add(Stage())
     }
 }

@@ -2,16 +2,18 @@ package me.cdh.conf
 
 import me.cdh.Animate
 import java.awt.image.BufferedImage
+import java.util.EnumSet
 import javax.imageio.ImageIO
 import kotlin.random.Random
+import kotlin.reflect.KClass
 
-object ResourceLoader {
-    var catType = listOf(
-            "calico_cat",
-            "grey_tabby_cat",
-            "orange_cat",
-            "white_cat",
-        )
+private object ResourceLoader {
+    private var catType = listOf(
+        "calico_cat",
+        "grey_tabby_cat",
+        "orange_cat",
+        "white_cat",
+    )
     private val selectedCatType =
         catType[Random.nextInt(0, catType.size)]
 
@@ -20,7 +22,7 @@ object ResourceLoader {
             "$selectedCatType/${actionName.lowercase()}/${actionName.lowercase()}_$frameNum.png"
         )?.use { ImageIO.read(it) }
     }
-
-    inline fun <reified T> loadAllFrames(): Map<String, List<BufferedImage>> where T : Enum<T>, T : Animate =
-        enumValues<T>().associate { entry -> entry.name to loadFrames(entry.name, entry.frame) }
 }
+
+fun <T> loadAllRes(clazz: KClass<T>): Map<String, List<BufferedImage>>
+        where T : Animate, T : Enum<T> = EnumSet.allOf(clazz.java).associate { entry -> entry.name to ResourceLoader.loadFrames(entry.name, entry.frame) }

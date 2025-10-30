@@ -3,13 +3,6 @@ package me.cdh.conf
 import me.cdh.BUBBLE_SIZE
 import me.cdh.WINDOW_HEIGHT
 import me.cdh.WINDOW_WIDTH
-import me.cdh.conf.CatProp.bubbleFrame
-import me.cdh.conf.CatProp.bubbleState
-import me.cdh.conf.CatProp.currBubbleFrames
-import me.cdh.conf.CatProp.currFrames
-import me.cdh.conf.CatProp.currentAction
-import me.cdh.conf.CatProp.frameNum
-import me.cdh.conf.CatProp.layingDir
 import me.cdh.Behave
 import me.cdh.BubbleState
 import me.cdh.Direction
@@ -18,10 +11,12 @@ import java.awt.Graphics
 import java.awt.Point
 import javax.swing.JPanel
 
-object Stage : JPanel() {
+internal class Stage : JPanel() {
 
-    const val BASE_X = 30
-    const val BASE_Y = 40
+    companion object {
+        const val BASE_X = 30
+        const val BASE_Y = 40
+    }
 
     init {
         isOpaque = false
@@ -59,7 +54,4 @@ object Stage : JPanel() {
             }
         }
     }
-
-    @Suppress
-    private fun readResolve(): Any = Stage
 }
