@@ -7,7 +7,7 @@ import me.cdh.State
 import java.awt.Point
 import java.awt.image.BufferedImage
 
-val win = CatWindow()
+val window = CatWindow()
 val frames = loadAllRes(Behave::class)
 val bubbleFrames = loadAllRes(BubbleState::class)
 var frameNum = 0

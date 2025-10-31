@@ -9,7 +9,7 @@ import kotlin.math.abs
 import kotlin.random.Random
 
 fun performMovement() {
-    val loc = win.location
+    val loc = window.location
     when (currentAction) {
         Behave.RIGHT -> loc.translate(1, 0)
         Behave.LEFT -> loc.translate(-1, 0)
@@ -19,24 +19,24 @@ fun performMovement() {
     }
     val screenSize = Toolkit.getDefaultToolkit().screenSize
     when {
-        loc.x > screenSize.width - win.width -> loc.setLocation(screenSize.width - win.width, loc.y)
+        loc.x > screenSize.width - window.width -> loc.setLocation(screenSize.width - window.width, loc.y)
         loc.x < -10 -> loc.setLocation(-10, loc.y)
-        loc.y > screenSize.height - win.height -> loc.setLocation(loc.x, screenSize.height - win.height)
+        loc.y > screenSize.height - window.height -> loc.setLocation(loc.x, screenSize.height - window.height)
         loc.y < -35 -> loc.setLocation(loc.x, -35)
     }
-    win.location = loc
+    window.location = loc
 }
 
 fun tryWandering() {
     if (Random.nextBoolean()) return
     state = State.WANDER
-    val screenLoc = win.locationOnScreen
+    val screenLoc = window.locationOnScreen
     var loc: Point
     do {
         val screenSize = Toolkit.getDefaultToolkit().screenSize
         loc = Point(
-            Random.nextInt(screenSize.width - win.width - 20) + 10,
-            Random.nextInt(screenSize.height - win.height - 20) + 10
+            Random.nextInt(screenSize.width - window.width - 20) + 10,
+            Random.nextInt(screenSize.height - window.height - 20) + 10
         )
     } while (abs(screenLoc.y - loc.y) <= 400 && abs(screenLoc.x - loc.x) <= 400)
     wanderLoc = loc

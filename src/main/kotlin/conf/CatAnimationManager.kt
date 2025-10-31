@@ -64,7 +64,7 @@ fun manageBubbleState() {
 fun handleFrames() {
     if (currentAction != Behave.RISING) {
         if (state == State.WANDER) {
-            val curPos = win.locationOnScreen
+            val curPos = window.locationOnScreen
             if (abs(curPos.x - wanderLoc.x) >= 3) {
                 if (curPos.x > wanderLoc.x) changeAction(Behave.LEFT)
                 else changeAction(Behave.RIGHT)

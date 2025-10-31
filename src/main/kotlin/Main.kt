@@ -16,7 +16,7 @@ private suspend fun CoroutineScope.startMainAnimationLoop() {
         performMovement()
         updateAnimation()
         manageBubbleState()
-        win.repaint()
+        window.repaint()
         delay(ANIMATION_UPDATE_DELAY)
     }
 }

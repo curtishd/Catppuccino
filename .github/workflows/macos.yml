@@ -14,8 +14,8 @@ jobs:
       - run: ./gradlew copyResourcesToClass
       - run: ./gradlew copyDependencies
       - run: cd build
-      - run: jpackage -t app-image -n kitten -p "./build/libs:./build/classes/kotlin/main" -m me.cdh/me.cdh.MainKt --jlink-options "--compress zip-9 --strip-native-commands --strip-debug --no-header-files --no-man-pages" --dest output
+      - run: jpackage -t app-image -n catppuccino -p "./build/libs:./build/classes/kotlin/main" -m me.cdh/me.cdh.MainKt --jlink-options "--compress zip-9 --strip-native-commands --strip-debug --no-header-files --no-man-pages" --dest output
       - uses: actions/upload-artifact@v4
         with:
-          name: kitten
+          name: catppuccino
           path: ./output
