@@ -40,22 +40,6 @@ company during your work or study time, bringing a touch of relaxation and delig
     ./gradlew run
 ```
 
-### or
-
-### **CI/CD**
-
-Fork the repo.
-This project uses GitHub Actions for continuous integration and deployment. The workflows are defined in the
-.github/workflows/ directory.
-**CI** Runs on every push and dispatch to the main branch.
-
-### Viewing CI Results
-
-1. Go to the "Actions" tab in your repo.
-2. Click on a specific workflow run to see detailed logs for each job and step.
-3. A green checkmark indicates a successful run, while a red cross indicates a failure.
-4. After CI complete, a local executable is generated. Just download and run as usual.
-
 ## How to Use
 
 - **Interact**: Try clicking or dragging the kitten with your mouse to see its reactions!
