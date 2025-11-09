@@ -1,16 +1,13 @@
-package me.cdh.conf
+package me.cdh
 
-import me.cdh.Behave
-import me.cdh.BubbleState
-import me.cdh.Direction
-import me.cdh.State
 import java.awt.Point
 import java.awt.image.BufferedImage
 
-object CatProp {
+object CatApp {
     val win = CatWindow()
-    val frames = ResourceLoader.loadAllFrames<Behave>()
-    val bubbleFrames = ResourceLoader.loadAllFrames<BubbleState>()
+    val resourceLoader = ResourceLoader()
+    val frames = resourceLoader.loadFrames<Behave>()
+    val bubbleFrames = resourceLoader.loadFrames<BubbleState>()
     var frameNum = 0
     var currentAction = Behave.SLEEP
     lateinit var currFrames: List<BufferedImage>

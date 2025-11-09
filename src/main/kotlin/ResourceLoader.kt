@@ -1,12 +1,11 @@
-package me.cdh.conf
+package me.cdh
 
-import me.cdh.Animate
 import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
 import kotlin.random.Random
 
-object ResourceLoader {
-    var catType = listOf(
+class ResourceLoader {
+    private var catType = listOf(
             "calico_cat",
             "grey_tabby_cat",
             "orange_cat",
@@ -21,6 +20,6 @@ object ResourceLoader {
         )?.use { ImageIO.read(it) }
     }
 
-    inline fun <reified T> loadAllFrames(): Map<String, List<BufferedImage>> where T : Enum<T>, T : Animate =
+    inline fun <reified T> loadFrames(): Map<String, List<BufferedImage>> where T : Enum<T>, T : Animate =
         enumValues<T>().associate { entry -> entry.name to loadFrames(entry.name, entry.frame) }
 }

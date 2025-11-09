@@ -1,14 +1,6 @@
-package me.cdh.conf
+package me.cdh
 
-import me.cdh.WINDOW_HEIGHT
-import me.cdh.WINDOW_WIDTH
-import me.cdh.conf.CatAnimationManager.changeAction
-import me.cdh.conf.CatProp.bubbleFrame
-import me.cdh.conf.CatProp.bubbleState
-import me.cdh.conf.CatProp.currentAction
-import me.cdh.conf.CatProp.frameNum
-import me.cdh.Behave
-import me.cdh.BubbleState
+import me.cdh.CatAnimationManager.changeAction
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Point
@@ -36,27 +28,27 @@ class CatWindow : JWindow() {
                 dragOffset?.let {
                     setLocation(e.locationOnScreen.x - it.x, e.locationOnScreen.y - it.y)
                 }
-                if (changeAction(Behave.RISING)) frameNum = 0
+                if (changeAction(Behave.RISING)) CatApp.frameNum = 0
             }
 
             override fun mouseReleased(e: MouseEvent) {
                 super.mouseReleased(e)
-                if (currentAction == Behave.RISING) {
+                if (CatApp.currentAction == Behave.RISING) {
                     changeAction(Behave.LAYING)
-                    frameNum = 0
+                    CatApp.frameNum = 0
                 }
             }
 
             override fun mouseClicked(e: MouseEvent) {
                 super.mouseClicked(e)
-                bubbleState = BubbleState.HEART
-                bubbleFrame = 0
+                CatApp.bubbleState = BubbleState.HEART
+                CatApp.bubbleFrame = 0
             }
         }
         addMouseMotionListener(mouseAdapter)
         addMouseListener(mouseAdapter)
         background = Color(1.0f, 1.0f, 1.0f, 0.0f)
         isVisible = true
-        add(Stage)
+        add(Stage())
     }
 }

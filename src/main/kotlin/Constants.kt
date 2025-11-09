@@ -1,6 +1,5 @@
 package me.cdh
 
-import me.cdh.conf.Stage
 import java.awt.*
 import java.awt.image.BufferedImage
 import javax.imageio.ImageIO
@@ -22,18 +21,20 @@ fun flipImg(img: BufferedImage): BufferedImage {
     return imageToFlip
 }
 
-fun initSystemTray() {
-    if (!SystemTray.isSupported()) return
-    val iconSize = SystemTray.getSystemTray().trayIconSize
-    val trayIcon = TrayIcon(
-        ImageIO.read(Stage::class.java.classLoader.getResourceAsStream("$PROJECT_NAME.png")).getScaledInstance(
-            iconSize.width, iconSize.height, Image.SCALE_SMOOTH
-        ), PROJECT_NAME
-    )
-    val popupMenu = PopupMenu()
-    val exit = MenuItem("Exit")
-    exit.addActionListener { exitProcess(0) }
-    popupMenu.add(exit)
-    trayIcon.popupMenu = popupMenu
-    SystemTray.getSystemTray().add(trayIcon)
+object CatTray {
+    fun initSystemTray() {
+        if (!SystemTray.isSupported()) return
+        val iconSize = SystemTray.getSystemTray().trayIconSize
+        val trayIcon = TrayIcon(
+            ImageIO.read(Stage::class.java.classLoader.getResourceAsStream("$PROJECT_NAME.png")).getScaledInstance(
+                iconSize.width, iconSize.height, Image.SCALE_SMOOTH
+            ), PROJECT_NAME
+        )
+        val popupMenu = PopupMenu()
+        val exit = MenuItem("Exit")
+        exit.addActionListener { exitProcess(0) }
+        popupMenu.add(exit)
+        trayIcon.popupMenu = popupMenu
+        SystemTray.getSystemTray().add(trayIcon)
+    }
 }
